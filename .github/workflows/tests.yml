@@ -1,0 +1,22 @@
+name: Lab 8 CI
+
+on: [push]
+
+jobs:
+  run-pytest:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Install Pydantic and Pytest
+        run: pip install pydantic pytest
+
+      - name: Run tests
+        run: python -m pytest test_lab6.py
