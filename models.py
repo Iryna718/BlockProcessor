@@ -2,7 +2,7 @@ from pydantic import BaseModel, Field
 from typing import Optional
 
 class Person(BaseModel):
-    id: int = Field(gt=200)
+    id: int = Field(gt=0)
     name: str = Field(min_length=2)
     addr: str = Field(min_length=5)
 
