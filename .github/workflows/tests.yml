@@ -1,4 +1,4 @@
-name: Lab 8 
+name: Lab 8
 
 on: [push]
 
@@ -10,13 +10,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
         with:
-          python-version: '3.13'
+          version: "latest"
 
-      - name: Install Pydantic and Pytest
-        run: pip install pydantic pytest
+      - name: Set up Python
+        run: uv python install 3.13
 
-      - name: Run tests
-        run: python -m pytest test_lab6.py
+      - name: Run tests with uv
+        run: uv run --with pydantic --with pytest pytest test_lab6.py
